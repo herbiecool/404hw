@@ -13,7 +13,7 @@ time.sleep(3)
 
 for i in range(19):
     browser.execute_script('window.scrollTo(0,document.body.scrollHeight);')
-    time.sleep(0.3)
+    time.sleep(0.5)
         
 soup = BeautifulSoup(browser.page_source,'html.parser') 
  
