@@ -2,17 +2,20 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
 
-chrome = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
 
-chrome.get('https://tw.eztable.com/search?country=tw&date=2021-08-22&people=2&searchTab=restaurant&source=mobile.eztable.com&utm_campaign=branding_keyword&utm_medium=cpc&utm_source=marketing')
+browser=webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
+
+browser.get('https://tw.eztable.com/search?country=tw&date=2021-08-22&people=2&searchTab=restaurant&source=mobile.eztable.com&utm_campaign=branding_keyword&utm_medium=cpc&utm_source=marketing')
 
 time.sleep(3)
 
 for i in range(19):
-    chrome.execute_script('window.scrollTo(0,document.body.scrollHeight);')
+    browser.execute_script('window.scrollTo(0,document.body.scrollHeight);')
     time.sleep(0.3)
         
-soup = BeautifulSoup(chrome.page_source,'html.parser') 
+soup = BeautifulSoup(browser.page_source,'html.parser') 
  
 a = []
 b = []
@@ -34,8 +37,9 @@ values = b
 dic = dict(zip(keys,values))
 
 print(dic)
+#print(a)
+#print(b)
 print(c)
 
-chrome.close() 
    
         
